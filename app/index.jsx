@@ -11,8 +11,12 @@ export default function Home() {
     checkUserAuth();
   },[])
 
-  const checkUserAuth=async()=>{
-    const result=await services.getData('log in');
+  /**
+   * Used to check user is already auth or not
+   */
+
+  const checkUserAuth=async()=>{ // Kimlik doğrulama 
+    const result=await services.getData('login');
     if(result!=='true'){
       router.replace('/login')
     }
