@@ -1,7 +1,8 @@
 import { View, Text , StyleSheet, Button } from 'react-native'
 import React, { useEffect } from 'react'
 import { Link, useRouter } from 'expo-router'
-import services from '../utils/services'
+import services from '../../utils/services'
+import { client } from '../../utils/KindeConfig';
 
 export default function Home() {
 
@@ -11,9 +12,6 @@ export default function Home() {
     checkUserAuth();
   },[])
 
-  /**
-   * Used to check user is already auth or not
-   */
 
   const checkUserAuth=async()=>{ // Kimlik doğrulama 
     const result=await services.getData('login');
@@ -21,11 +19,22 @@ export default function Home() {
       router.replace('/login')
     }
   }
+
+  const handleLogout = async () => {
+    const loggedOut=await client.logout();
+    if(loggedOut){
+      await services.storeData('login', 'false');
+      router.replace('/login');
+    }
+  }
+
   return (
     <View style={{
       marginTop:20  
     }} >
       <Text style={styles.text}>Ana Sayfa</Text>
+      <Button title='Logout'
+      onPress={handleLogout}/>
     </View> 
   )
 }

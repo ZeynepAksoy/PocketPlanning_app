@@ -2,8 +2,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import React from 'react'
 import loginBg from './../../assets/images/loginbg.png';
 import Colors from '../../utils/Colors';
+import { client } from '../../utils/KindeConfig';
+import services from '../../utils/services'
+import { useRouter } from 'expo-router';
 
 export default function LoginScreen() {
+
+  const router=useRouter();
+  const handleSignIn = async () => {
+    const token = await client.login();
+
+    if (token) {
+        await services.storeData('login', 'true');
+        router.replace('/')
+    }
+};
   return (
     <View style={{
       display:'flex',
@@ -36,15 +49,20 @@ export default function LoginScreen() {
           color:Colors.WHITE,
           marginTop:20
         }}>
-          Olayları Takip Et, Bütçeni Kontrol Altında Tut: Kişisel Bütçe Planlama Uygulamanız
+          Olayları Takip Et, Bütçeni Kontrol Altında Tut Kişisel Bütçe Planlama Uygulamanız
         </Text>
 
         <TouchableOpacity style={styles.button}
-        onPress={()=>console.log("btn Click")}>
+        onPress={handleSignIn}>
           <Text style={{textAlign:'center', color:Colors.PRIMARY }}>
           Giriş Yap/ Kaydol</Text>
         </TouchableOpacity>
-
+        <Text style={{
+          fontSize:13,
+          color:Colors.GRAY,
+          marginTop:10,
+          textAlign:'center'
+        }}>Giriş yaparak/ Kayıt olarak şartlarımızı ve koşullarımızı kabul etmiş olacaksınız </Text>
       </View>
     </View>
   )
