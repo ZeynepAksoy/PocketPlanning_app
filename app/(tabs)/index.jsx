@@ -3,7 +3,10 @@ import React, { useEffect } from 'react'
 import { Link, useRouter } from 'expo-router'
 import services from '../../utils/services'
 import { client } from '../../utils/KindeConfig';
-import { supabase } from '../../utils/SupebaseConfig';
+import { supabase } from '../../utils/SupabaseConfig';
+import Header from '../../components/Header'
+import Colors from '../../utils/Colors';
+import CircularChart from '../../components/CircularChart';
 
 export default function Home() {
 
@@ -40,11 +43,15 @@ export default function Home() {
 
   return (
     <View style={{
-      marginTop:20  
+      marginTop:20 ,
+      padding:20,
+      backgroundColor:Colors.PRIMARY,
+      height:150
     }} >
-      <Text style={styles.text}>Ana Sayfa</Text>
-      <Button title='Logout'
-      onPress={handleLogout}/>
+     <Header/>
+
+     <CircularChart/>
+
     </View> 
   )
 }
