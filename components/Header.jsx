@@ -29,8 +29,8 @@ export default function Header() {
       }}
       />
       <View >
-         <Text style={{color:Colors.WHITE, fontSize:16}}>Hoş Geldin</Text>
-         <Text style={{color:Colors.WHITE, fontSize:20, fontWeight:'bold'}}>{user?.given_name}</Text>
+         <Text style={{color:Colors.WHITE, fontSize:16, fontFamily:'outfit'}}>Hoş Geldin</Text>
+         <Text style={{color:Colors.WHITE, fontSize:20, fontFamily:'outfit-Bold'}}>{user?.given_name}</Text>
       </View>
       <Ionicons style={{marginLeft:200}} name="notifications" size={24} color="white" />
     </View>

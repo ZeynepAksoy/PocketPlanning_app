@@ -11,8 +11,10 @@ export default function CircularChart() {
   return (
     <View style={styles.continer}>
       <Text style={{
-        fontSize:20 
-      }}>Toplam Harcama: <Text style={{fontWeight:'bold'}}>0₺</Text></Text>
+        fontSize:20,
+        fontFamily:'outfit'
+      }}>Toplam Harcama: <Text style={{fontFamily:'outfit-bold'}}>0₺</Text></Text>
+
       <View style={styles.subContainer}>
       <PieChart
             widthAndHeight={widthAndHeight}
