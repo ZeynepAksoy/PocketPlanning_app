@@ -24,7 +24,9 @@ export default function HomeLayout() {
       />
       <Stack.Screen name='add-new-category'
       options={{
-      presentation:'modal'
+      presentation:'modal',
+      headerShown:true,
+      headerTitle:'Yeni Kategori Ekle'
       }}
       />
   </Stack>
