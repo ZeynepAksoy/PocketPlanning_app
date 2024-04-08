@@ -6,12 +6,14 @@ import { Foundation } from '@expo/vector-icons';
 import ColorPicker from '../components/ColorPicker'
 import { supabase } from '../utils/SupabaseConfig';
 import { client } from '../utils/KindeConfig';
+import { useRouter } from 'expo-router'
 
 export default function AddNewCategory() {
   const [selectedIcon,setSelectedIcon]=useState('IC')
   const [selectedColor,setSelectedColor]=useState(Colors.PRIMARY)
   const [categoryName,setCategoryName]=useState();
   const [totalBudget,setTotalBudget]=useState();
+  const router=useRouter();
 
   const onCreateCategory=async()=>{
     const user=await client.getUserDetails();
@@ -25,6 +27,12 @@ export default function AddNewCategory() {
     }]).select();
       console.log(data);
     if(data){
+      router.replace({
+        pathname:'/category-detail',
+        params:{
+          categoryId:data[0].id
+        }
+      })
       ToastAndroid.show('Category Created!', ToastAndroid.SHORT)
     }
   }
@@ -59,7 +67,7 @@ export default function AddNewCategory() {
      <Foundation name="dollar" size={24} color={Colors.GRAY}/>
      <TextInput placeholder='Toplam Bütçe'
         keyboardType='numeric'
-        onChangeText={(V)=>setCategoryName(V)}
+        onChangeText={(V)=>setTotalBudget(V)}
       style={{width:'100%', fontSize:17}}/>
      </View>
 
