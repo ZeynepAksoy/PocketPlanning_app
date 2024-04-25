@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   adBtnContainer:{
     marginTop:700,
     position:'absolute',
-    buttom:16,
+    bottom:16,
     right:16
   }
 })
