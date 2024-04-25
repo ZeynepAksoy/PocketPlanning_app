@@ -13,12 +13,12 @@ import CategoryList from '../../components/CategoryList';
 
 export default function Home() {
 
-  const router=useRouter();
-  const [categoryList,setCategoryList]=useState();
-  const [loading, setLoading]=useState(false);
+  const router=useRouter(); //Sayfa yönlendirmelerini yönetmek için kullanıldı
+  const [categoryList,setCategoryList]=useState(); //Kategorileri tutacak bir dizi
+  const [loading, setLoading]=useState(false); // Yüklemeleri takip etmek için kullanıldı
 
   useEffect(()=>{
-    checkUserAuth();
+    checkUserAuth(); 
     getCategoryList();
   },[])
 

@@ -15,7 +15,7 @@ export default function AddNewCategory() {
   const [totalBudget,setTotalBudget]=useState();
   const router=useRouter();
 
-  const onCreateCategory=async()=>{
+  const onCreateCategory=async()=>{  //Yeni kategori oluşturuyoruz
     const user=await client.getUserDetails();
     const {data, error}=await supabase.from('Category')
     .insert([{

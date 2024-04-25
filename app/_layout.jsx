@@ -13,7 +13,7 @@ export default function HomeLayout() {
 
   return (
     <Stack
-    screenOptions={{
+    screenOptions={{     //Tüm ekranlar için ayarlanan özellikler
       headerShown:false
     }}
     >
@@ -24,7 +24,7 @@ export default function HomeLayout() {
       />
       <Stack.Screen name='add-new-category'
       options={{
-      presentation:'modal',
+      presentation:'modal', //Başlık çubuğu görünür hale getirildi
       headerShown:true,
       headerTitle:'Yeni Kategori Ekle'
       }}

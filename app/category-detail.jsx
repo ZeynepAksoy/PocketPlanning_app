@@ -13,7 +13,7 @@ export default function CategoryDetails() {
         categoryId&&getCategorDetail()
     },[categoryId]);
 
-    const getCategorDetail=async()=>{
+    const getCategorDetail=async()=>{  // Kategoriye ait detayları alınıyor 
       const {data,error}=await supabase.from('Category')
       .select('*,CategoryItems(*)')
       .eq('id', categoryId)

@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router'
 
 export default function CategoryList({categoryList}) {
     const router=useRouter();
-    const onCategoryClick=(category)=>{
+    const onCategoryClick=(category)=>{ //Kategoriye tıklandığında çalışacak işlevi tanımlar
         router.push({
             pathname:'/category-detail',
             params:{
