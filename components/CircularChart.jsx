@@ -5,7 +5,7 @@ import Colors from '../utils/Colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function CircularChart() {
-    const widthAndHeight=150;
+    const widthAndHeight=150;  
     const [values,setValues]=useState([1]);
     const [sliceColor,setSliceColor]=useState([Colors.GRAY]);
   return (

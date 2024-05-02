@@ -34,7 +34,8 @@ export default function CourseInfo({categoryData}) {
                 <Ionicons name="trash" size={24} color="red" />
         </View>
         {/* ilerleme çubuğu*/}
-        <View style={styles.amountContainer}> {/*Toplam maliyet ve kategoriye atanan toplam bütçe gösterili*/}
+         {/*Toplam maliyet ve kategoriye atanan toplam bütçe gösterili*/}
+        <View style={styles.amountContainer}>
             <Text style={{fontFamily:'outfit-bold'}}>{totalCost}₺</Text>
             <Text style={{fontFamily:'outfit'}}>Toplam Bütçe:{categoryData.assigned_budget}</Text>
         </View>
