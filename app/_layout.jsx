@@ -29,6 +29,14 @@ export default function HomeLayout() {
       headerTitle:'Yeni Kategori Ekle'
       }}
       />
+       <Stack.Screen
+       name='add-new-category-item'
+       options={{
+        presentation:'modal',
+        headerShown:true,
+        headerTitle:'Harcama Ekle'
+       }}
+       />
   </Stack>
   )
 }
