@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet , Image, TextInput, Touchable, TouchableOpacity, ScrollView, KeyboardAvoidingView, ToastAndroid} from 'react-native'
+import { View, Text, StyleSheet , Image, TextInput, Touchable, TouchableOpacity, ScrollView, KeyboardAvoidingView, ToastAndroid, ActivityIndicator} from 'react-native'
 import React, { useState } from 'react'
 import Colors from '../utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,8 +17,9 @@ export default function AddNewCategoryItem() {
     const [url,setUrl]=useState();
     const [cost,setCost]=useState();
     const [note,setNote]=useState();
+    const [loading,setLoading]=useState(false);
     const router=useRouter();
-
+    
     const onImagePick=async()=>{
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -34,6 +35,7 @@ export default function AddNewCategoryItem() {
     }
 
     const onClickAdd=async()=>{
+      setLoading(true)
       const fileName=Date.now();
       const { data, error } = await supabase
       .storage
@@ -58,6 +60,7 @@ export default function AddNewCategoryItem() {
        }]).select();
        ToastAndroid.show('Yeni Harcama Eklendi',ToastAndroid.SHORT);
        console.log(data); 
+       setLoading(false);
        router.replace({
         pathname:'/category-detail',
         params:{
@@ -103,13 +106,16 @@ export default function AddNewCategoryItem() {
         numberOfLines={3}/>  
       </View>  
       <TouchableOpacity style={styles.buttom}
-            disabled={!name||!cost}
+            disabled={!name||!cost||loading}
             onPress={()=>onClickAdd()} 
       >
+        {loading?
+        <ActivityIndicator color={Colors.WHITE}/>:  
         <Text style={{textAlign:'center',
-          fontFamily:'outfit-bold',
-          color:Colors.WHITE
+        fontFamily:'outfit-bold',
+        color:Colors.WHITE
         }}>Ekle</Text>
+      }
       </TouchableOpacity>
     </ScrollView>
     </KeyboardAvoidingView>

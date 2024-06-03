@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, Touchable, TouchableOpacity, ToastAndroid } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Touchable, TouchableOpacity, ToastAndroid, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '../utils/Colors'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -13,9 +13,11 @@ export default function AddNewCategory() {
   const [selectedColor,setSelectedColor]=useState(Colors.PRIMARY)
   const [categoryName,setCategoryName]=useState();
   const [totalBudget,setTotalBudget]=useState();
+  const [loading,setLoading]=useState(false);
   const router=useRouter();
 
   const onCreateCategory=async()=>{  //Yeni kategori oluşturuyoruz
+    setLoading(true)
     const user=await client.getUserDetails();
     const {data, error}=await supabase.from('Category')
     .insert([{
@@ -33,7 +35,11 @@ export default function AddNewCategory() {
           categoryId:data[0].id
         }
       })
+      setLoading(false)
       ToastAndroid.show('Category Created!', ToastAndroid.SHORT)
+    }
+    if(error){
+      setLoading(false)
     }
   }
 
@@ -72,10 +78,13 @@ export default function AddNewCategory() {
      </View>
 
      <TouchableOpacity style={styles.button}
-       disabled={!categoryName&&!totalBudget}
+       disabled={!categoryName&&!totalBudget||loading}
        onPress={()=>onCreateCategory()}
      >
+      {loading?
+      <ActivityIndicator color={Colors.WHITE}/>:
       <Text style={{textAlign:'center',fontSize:16, color:Colors.WHITE}}>Oluştur</Text>
+      }
      </TouchableOpacity>
 
     </View>
