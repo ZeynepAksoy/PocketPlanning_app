@@ -5,8 +5,7 @@ import { supabase } from '../utils/SupabaseConfig';
 import { Ionicons } from '@expo/vector-icons';
 import CourseInfo from '../components/CourseDetail/CourseInfo';
 import CourseItemList from '../components/CourseDetail/CourseItemList';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-
+import Colors from '../utils/Colors'
 export default function CategoryDetails() {
     const {categoryId}=useLocalSearchParams();
     const [categoryData,setCategoryData]=useState([]);
@@ -24,7 +23,7 @@ export default function CategoryDetails() {
     }
 
   return (
-    <View style={{padding:20,marginTop:20, flex:1 }}>
+    <View style={{padding:20,marginTop:20, flex:1,backgroundColor:Colors.WHITE}}>
       <TouchableOpacity onPress={()=>router.back()}>
       <Ionicons name="arrow-back-circle" size={44} color="black" />
       </TouchableOpacity>
