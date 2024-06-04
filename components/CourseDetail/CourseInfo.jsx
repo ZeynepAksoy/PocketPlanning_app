@@ -1,11 +1,14 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../utils/Colors';
+import { supabase } from '../../utils/SupabaseConfig';
+import { useRouter } from 'expo-router';
 
 export default function CourseInfo({categoryData}) {
     const [totalCost, setTotalCost]=useState();
     const [perclTotal, setPercTotal]=useState(0);
+    const router=useRouter();
 
     useEffect(()=>{
         categoryData&&calculateTotalPerc();
@@ -23,6 +26,31 @@ export default function CourseInfo({categoryData}) {
         }
         setPercTotal(perc)
     }
+    const onDeleteCategory=()=>{
+        Alert.alert('Emin misin?','Silmek istiyor musun?',[
+           {
+            text:'Vazgeç',
+            style:'cancel'
+           },
+           {
+            text:'Evet',
+            style:'destructive',
+            onPress:async()=>{
+                const{ error }= await supabase
+                .from('CategoryItems')
+                .delete()
+                .eq('category_id',categoryData.id);
+
+                await supabase
+                .from('Category')
+                .delete()
+                .eq('id',categoryData.id)
+                ToastAndroid.show('Kategori Silindi!',ToastAndroid.SHORT)
+                router.replace('/(tabs)');
+            }
+           } 
+        ])
+    }
   return (
     <View>
         <View style={styles.container}>
@@ -35,8 +63,10 @@ export default function CourseInfo({categoryData}) {
                     <Text style={styles.categoryName}>{categoryData?.name}</Text>
                     <Text style={styles.categoryItemText}>{categoryData?.CategoryItems?.length} Harcama</Text>
                 </View>
-                <Ionicons name="trash" size={24} color="red" />
-        </View>
+                <TouchableOpacity onPress={()=>onDeleteCategory()}>
+                    <Ionicons name="trash" size={24} color="red" />
+                </TouchableOpacity>
+        </View>  
         {/* ilerleme çubuğu*/}
          {/*Toplam maliyet ve kategoriye atanan toplam bütçe gösterili*/}
         <View style={styles.amountContainer}>
