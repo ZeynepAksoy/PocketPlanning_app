@@ -1,8 +1,19 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ToastAndroid } from 'react-native'
+import React, { useState } from 'react'
 import Colors from '../../utils/Colors'
+import { EvilIcons } from '@expo/vector-icons';
+import { supabase } from '../../utils/SupabaseConfig';
 
-export default function CourseItemList({categoryData}) {
+export default function CourseItemList({categoryData,setUpdateRecord}) {
+  const [explandItem,setExpendItem]=useState();
+  const onDeleteItem=async(id)=>{
+    const {error}=await supabase.from('CategoryItems')
+    .delete()
+    .eq('id',id);
+
+    ToastAndroid.show('Harcama silindi',ToastAndroid.SHORT);
+    setUpdateRecord(true)
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Harcama Listesi</Text>
@@ -10,14 +21,27 @@ export default function CourseItemList({categoryData}) {
       <View style={{marginTop:15}}>
         {categoryData?.CategoryItems?.length>0?categoryData?.CategoryItems?.map((item,index)=>(
           <>
-            <View key={index} style={styles.itemContainer}>
+            <TouchableOpacity key={index} style={styles.itemContainer}
+            onPress={()=>setExpendItem(index)}>
                 <Image source={{uri:item.image}} style={styles.image}/>
                 <View style={{flex:1, marginLeft:10}}>
                   <Text style={styles.name}>{item.name} </Text>
-                  <Text style={styles.url}>{item.url} </Text>
+                  <Text style={styles.url} numberOfLines={2}>{item.url} </Text>
                 </View>
                 <Text style={styles.cost}>{item.cost}₺</Text>
+            </TouchableOpacity>
+            {explandItem==index&&
+            <View style={styles.actionItemContainer}>
+
+              <TouchableOpacity onPress={()=>onDeleteItem(item.id)}>
+                <EvilIcons name="trash" size={34} color="red" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={()=>openURL(item.url)}>
+               <EvilIcons name="external-link" size={34} color="blue" />
+              </TouchableOpacity>
+             
             </View>
+            }
            {categoryData?.CategoryItems.length-1!=index&&
             <View style={{borderWidth:0.5, marginTop:7, borderColor:Colors.GRAY}}></View>
            }
@@ -66,5 +90,11 @@ const styles=StyleSheet.create({
       fontFamily:'outfit-bold',
       fontSize:25,
       color:Colors.GRAY
+    },
+    actionItemContainer:{
+      display:'flex',
+      flexDirection:'row',
+      gap:10,
+      justifyContent:'flex-end'
     }
 })

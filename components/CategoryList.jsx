@@ -13,7 +13,7 @@ export default function CategoryList({categoryList}) {
             }
         })
     }
-
+  
   return (
     <View style={{
         marginTop:20

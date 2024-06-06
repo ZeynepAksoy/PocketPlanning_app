@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PieChart from 'react-native-pie-chart'
 import Colors from '../utils/Colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -23,13 +23,13 @@ export default function CircularChart() {
             coverRadius={0.65}
             coverFill={'#FFF'}
           />
-          <View style={{display:'flex', flexDirection:'row', gap:5, alignItems:'center'}}>
+          <View style={styles.chartNameContainer}>
             <MaterialCommunityIcons 
-            name="checkbox-blank-circle" 
-            size={24} 
-            color={Colors.GRAY}
-             />
-             <Text>NA</Text>
+                  name="checkbox-blank-circle" 
+                  size={24} 
+                  color={Colors.GRAY}
+                  />
+                  <Text>NA</Text>
           </View>
       </View>
     </View>
@@ -50,5 +50,11 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         gap:20
 
+    },
+    chartNameContainer:{
+      display:'flex', 
+      flexDirection:'row', 
+      gap:5, 
+      alignItems:'center'
     }
 })
