@@ -73,7 +73,7 @@ export default function Home() {
         padding:20,
         marginTop:-70
        }}>
-        <CircularChart/>
+        <CircularChart categoryList={categoryList}/>
         <CategoryList categoryList={categoryList}/>
        </View>
        

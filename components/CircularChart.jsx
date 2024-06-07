@@ -4,16 +4,49 @@ import PieChart from 'react-native-pie-chart'
 import Colors from '../utils/Colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function CircularChart() {
+export default function CircularChart({categoryList}) {
     const widthAndHeight=150;  
     const [values,setValues]=useState([1]);
     const [sliceColor,setSliceColor]=useState([Colors.GRAY]);
+    const [totalCalculateEstimate,setTotalCalculatestimate]=useState(0);
+    useEffect(()=>{
+      categoryList&&updateCircularChart();
+    },[categoryList])
+
+    const updateCircularChart=()=>{
+      let totalEsimates=0;
+      setSliceColor([]);
+      setValues([]);
+      let otherCost=0;
+      categoryList.forEach((item,index)=>{
+
+        if(index<4){
+        let itemTotalCost=0;
+        item.CategoryItems?.forEach((item_)=>{
+          itemTotalCost=itemTotalCost+item_.cost;
+          totalEsimates=totalEsimates+item_.cost;
+        })
+        setSliceColor(sliceColor=>[...sliceColor,Colors.COLOR_LIST[index]]);
+        setValues(values=>[...values,itemTotalCost])
+      }
+      else{
+        item.CategoryItems?.forEach((item_)=>{
+         otherCost=otherCost+item_.cost;
+         totalEsimates=totalEsimates+item_.cost;
+
+        })
+      }
+      })
+      setTotalCalculatestimate(totalEsimates)
+      setSliceColor(sliceColor=>[...sliceColor,Colors.COLOR_LIST[4]]);
+      setValues(values=>[...values,otherCost])
+    }
   return (
     <View style={styles.continer}>
       <Text style={{
         fontSize:20,
         fontFamily:'outfit'
-      }}>Toplam Harcama: <Text style={{fontFamily:'outfit-bold'}}>0₺</Text></Text>
+      }}>Toplam Harcama: <Text style={{fontFamily:'outfit-bold'}}>{totalCalculateEstimate}0₺</Text></Text>
 
       <View style={styles.subContainer}>
       <PieChart
@@ -23,7 +56,7 @@ export default function CircularChart() {
             coverRadius={0.65}
             coverFill={'#FFF'}
           />
-          <View style={styles.chartNameContainer}>
+        {categoryList?.length==0?  <View style={styles.chartNameContainer}>
             <MaterialCommunityIcons 
                   name="checkbox-blank-circle" 
                   size={24} 
@@ -31,6 +64,18 @@ export default function CircularChart() {
                   />
                   <Text>NA</Text>
           </View>
+         : <View>
+          {categoryList?.map((category,index)=>index<=4&&(
+            <View key={index} style={styles.chartNameContainer}>
+                <MaterialCommunityIcons 
+                  name="checkbox-blank-circle" 
+                  size={24} 
+                  color={Colors.COLOR_LIST[index]}
+                  />
+                  <Text>{index<4?category.name:'Other'}</Text>
+            </View>
+          ))}
+          </View>}
       </View>
     </View>
   )
