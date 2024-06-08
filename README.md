@@ -31,31 +31,5 @@ Bütçe Planlama Uygulaması, kişisel finans yönetimini kolaylaştıran bir mo
 6. Uygulamayı başlatın:
    npx expo start
 
-## Ekran Görüntüleri
-Giriş Ekranı:
-![Giriş Ekranı](screenshots/home.png)
-
-Oturum Açma:
-![Oturum Açma Ekranı](screenshots/home.png)
-
-Ana Sayfa:
-![Ana Sayfa](screenshots/home.png)
-
-Katagori Ekleme:
-![Katagori Ekleme](screenshots/add_transaction.png)
-
-Katagori Görüntüleme:
-![Katagori Ekranı](screenshots/analysis.png)
-
-Harcama Ekleme:
-![Harcama Ekleme](screenshots/analysis.png)
-
-Katahori Silme:
-![Kategori Silme](screenshots/profile.png)
-
-Harcama Silme:
-![Harcama Silme](screenshots/profile.png)
-
-
 ## İletişim
-Sorularınız veya geri bildirimleriniz için lütfen [zeynepaksoy853@gmail.com](mailto:zeynepaksoy853@gmail.com) adresinden bizimle iletişime geçin.
+Sorularınız veya geri bildirimleriniz için lütfen [zeynepaksoy853@gmail.com](mailto:zeynepaksoy853@gmail.com) adresinden benimle iletişime geçin.
