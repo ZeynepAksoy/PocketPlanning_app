@@ -33,28 +33,61 @@ Bütçe Planlama Uygulaması, kişisel finans yönetimini kolaylaştıran bir mo
 
    ## Ekran Görüntüleri
    1.Giriş 
-   <img src="screenshots/GirisEkranı.png" alt="Giriş Sayfası" width="50%">
+    <table>
+     <tr>
+       <td><img src="screenshots/GirisEkranı.png" alt="Giriş Sayfası" width="50%"></td>
+     </tr>
+   </table>
 
     2.Oturum Açma 
-   <img src="screenshots/OturumAçma.png" alt="Oturum Açma Sayfası" width="50%">
+    <table>
+     <tr>
+       <td><img src="screenshots/OturumAçma.png" alt="Oturum Açma Sayfası" width="50%"></td>
+     </tr>
+   </table>
 
     3.Ana Sayfa
-   <img src="screenshots/screenshots/AnaSayfa.png" alt="Ana Sayfa" width="50%">
+    <table>
+     <tr>
+       <td><img src="screenshots/AnaSayfa.png" alt="Ana Sayfa" width="50%"></td>
+     </tr>
+   </table>
 
     4.Katagori Oluşturma 
-   <img src="screenshots/Kategori_Oluşturma.png" alt="Katagori Oluşturma" width="50%">
+    <table>
+     <tr>
+       <td><img src="screenshots/Kategori_Oluşturma.png" alt="Katagori Oluşturma" width="50%"></td>
+     </tr>
+   </table>
 
     5.Katagori Sayfası
-   <img src="screenshots/Kategori.png" alt="Katagori Sayfası" width="50%">
+    <table>
+     <tr>
+       <td><img src="screenshots/Kategori.png" alt="Katagori Sayfası" width="50%"></td>
+     </tr>
+    </table>
 
     6.Katagori Silme 
-   <img src="screenshots/KategoriSilme.png" alt="Katagori Silme" width="50%">
+   <table>
+     <tr>
+       <td><img src="screenshots/KategoriSilme.png" alt="Katagori Silme" width="50%"></td>
+     </tr>
+    </table>
 
     7.Harcama Ekleme 
-   <img src="screenshots/HarcamaEkleme.png" alt="Harcama Ekleme" width="50%">
-
+     <table>
+     <tr>
+       <td><img src="screenshots/HarcamaEkleme.png" alt="Harcama Ekleme" width="50%"></td>
+     </tr>
+    </table>
+   
     8.Harcama Silme 
-   <img src="screenshots/HarcamaSilme.png" alt="Harcama Silme" width="50%">
+     <table>
+     <tr>
+       <td><img src="screenshots/HarcamaSilme.png" alt="Harcama Silme" width="50%"></td>
+     </tr>
+    </table>
+   
 
 ## İletişim
 Sorularınız veya geri bildirimleriniz için lütfen [zeynepaksoy853@gmail.com](mailto:zeynepaksoy853@gmail.com) adresinden benimle iletişime geçin.
